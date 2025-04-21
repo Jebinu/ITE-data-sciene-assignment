@@ -1,74 +1,102 @@
-# Data Science Assignment: Visitor-Exhibitor Matching & Insights
+# Visitor-Exhibitor Matching & Insights (ITE Data Science Assignment)
 
-## Objective
-You are given data from a large-scale corporate event where visitors register by answering questions, and exhibitors register by selecting categories relevant to their business. Your task is to process and analyze the data to derive meaningful insights and develop a visitor-exhibitor matchmaking system.
-
-## Dataset Overview
-
-### 1. Visitors (`visitors.csv`)
-- `email`: Unique email identifier for visitors.
-- `gender` : Visitor Gender
-- `id` : Unique registration Id
-- `data`: JSON data of answers selected during registration.
-
-### 2. Answers (`answers.csv`)
-- `id`: Unique identifier for an answer.
-- `questionid`: The ID of the question this answer belongs to.
-- `answer`: The text of the selected answer.
-
-### 3. Questions (`questions.csv`)
-- `questionid`: Unique identifier for a question.
-- `questionTypeId` : Unique identifier for a question Type
-- `Step Id` : Unique identifier for a question Step
-- `question`: The text of the question.
-
-### 4. Exhibitor Categories (`exhibitor_categories.csv`)
-- `categoryId`: Unique identifier for an exhibitor category.
-- `categoryName`: Description of the category.
-
-### 5. Exhibitors (`exhibitors.csv`)
-- `exhibitorID`: Unique identifier for an exhibitor.
-- `Name` : Exhibitor Name
-- `MainCategories`: Pipe-separated (`|`) list of categories selected by the exhibitor.
+## 🎯 Objective
+Analyze visitor and exhibitor registration data from a corporate event, extract insights, and build a smart matching system to recommend relevant exhibitors to visitors and vice versa.
 
 ---
 
-## Tasks
+## 📁 Project Structure
 
-### 1. Data Cleaning & Processing
-
-### 2. Visitor Profile Analysis
-- Kindly mention a heading with details for all the analysis 
-
-
-### 3. Exhibitor Profile Analysis
-- Kindly mention a heading with details for all the analysis
-
-
-### 4. Visitor-Exhibitor Matching Model
-- Develop a **visitor-exhibitor recommendation model** based on common interests:
-  - Map visitor answers to exhibitor categories (e.g., a visitor answering "I am looking for travel services" should match an exhibitor under "Travel").
-  - Create a **scoring system** to rank exhibitor matches provided visitor Email, Suggest top **7 exhibitors** for provided visitor
-  - Create a **scoring system** to rank visitors matches for each exhibitor, Suggest top **7 visitors** for provided exhibitor
-
-- Mostly, the Exhibitor selects all the available categories, this might create issues for the recommendations, kindly create a logic to penalize such exhibitors while recommending them to the visitors
-
-### 5. Data Visualization
-
-### 6. Test Cases
-- Kindly create the Unit tests for the methods created
-
-### 7. Advanced Insights (Bonus)
-- **Predictive Analysis**: Based on visitor preferences, predict what new categories should be introduced for exhibitors.
-- **Cluster Analysis**: Segment visitors into different groups based on their answers and analyze their distinct characteristics.
+- `source_datasets/` – Contains **all raw CSV files** (visitors, exhibitors, questions, answers, etc.)  
+  as well as **cleaned datasets** like `final_analysis_data_visitors.csv`, `exhibitor_final.csv`, etc.
+- `code/` – Jupyter Notebook(s) with full data processing, analysis, and recommendation logic
+- `Visitor_Exhibitor_Matching_Presentation.pptx` – Final presentation summarizing insights and model
+- `requirements.txt` – Python libraries used in the project
+- `README.md` – Project documentation (this file)
 
 ---
 
-## Expected Deliverables
-- A **Jupyter Notebook/Python script** with all analysis and code.
-- A **short presentation (PPT or PDF)** summarizing key insights and recommendations.
+## 🔧 Work Summary
+
+### ✅ 1. Data Cleaning & Processing
+- Parsed nested JSON structure from visitor responses
+- Merged `visitor`, `question`, and `answer` datasets to build a rich visitor profile
+- Cleaned and merged exhibitor categories 
+- Removed duplicates, handled missing values
+- Cleaned and standardized email formats
+
+### ✅ 2. Visitor Profile Analysis
+- **Gender distribution** analysis: Majority of visitors are male – insight for inclusive planning
+- **Top questions and answers** highlight visitor engagement and reveal their key interests
+
+### ✅ 3. Exhibitor Profile Analysis
+- Cleaned and categorized exhibitor data
+- Frequency analysis of exhibitor categories
+- Detected over-generic exhibitors selecting too many broad categories
+- Shows how different categories are spread across exhibitors to spot common areas
+
+### ✅ 4. Visitor-Exhibitor Matching Model
+
+- **TF-IDF + Cosine Similarity** used for intelligent matching
+- **Three Recommendation Functions**:
+  - Match by **visitor email** (interest-based)
+  - Match by **visitor answers**
+  - Match by **exhibitor ID**
+- Matching is based on **highest similarity scores**
+- Sample output: Top 7 recommendations for each query
+- Validated logic using visitor data
+- Edge cases (e.g., missing info or overly generic exhibitors) handled carefully
+
+### ✅ 5. Data Visualization
+- Gender distribution, answer frequency, and category spread
+- Category popularity and frequency
+- Visitor Engagement & Interests:
+  - Top questions and common answers reveal engagement patterns
+
+### ✅ 6. Unit Testing
+- **Testing performed inside each of the three recommendation notebooks and separate notebooks "Tests"**
+- Reusable and scalable for future development
+- Validated logic and handled exceptions
+
+### ✅ 7. Advanced Insights
+- **Predictive Analysis**:
+  - Topic Modeling using NMF to uncover emerging visitor themes
+- **Cluster Analysis**:
+  - Identified **4 distinct visitor segments**
+  - Supports targeted recommendations and smarter category planning
 
 ---
 
-This assignment will test your ability to handle **data wrangling, EDA, recommendation models, and visualization**. Good luck! 🚀
+## 🚀 How to Run
+1. Clone the repo or download the files
+2. Open the Jupyter Notebooks inside the `code/` folder
+3. Run all cells in order to see processing, analysis, and recommendations
 
+> **Note**: Install dependencies using  
+> `pip install -r requirements.txt`
+
+---
+
+## 📽️ Presentation
+The `Visitor_Exhibitor_Matching_Presentation.pptx` contains:
+- Project overview
+- Key findings and insights
+- Recommendation model breakdown
+- Business impact & suggested next steps
+
+---
+
+## ✅ Status
+- [x] Visitor Profile Analysis  
+- [x] Exhibitor Profile Analysis  
+- [x] Matching System (Visitors ↔ Exhibitors)  
+- [x] Visualizations  
+- [x] Inline Unit Testing (3 recommendation notebooks)  
+- [x] `requirements.txt`  
+- [x] Clustering & Prediction Analysis  
+
+---
+
+## ✍️ Author
+**Jebinu**  
+Data Science Assignment – ITE
